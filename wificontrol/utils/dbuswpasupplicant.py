@@ -382,7 +382,8 @@ class WpaSupplicantNetwork(WpaSupplicantDBus):
     def get_network_SSID(self, network_path):
         ssid = self.network_properties(network_path)['ssid']
         try:
-            return str(ssid.decode('hex')).strip("\"")
+            #return str(ssid.decode('hex')).strip("\"")
+            return str(ssid.encode('utf-8')).strip("'b\"\'")
         except TypeError:
             return str(ssid).strip("\"")
 
