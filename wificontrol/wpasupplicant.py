@@ -118,6 +118,9 @@ class WpaSupplicant(WiFi):
 
     def add_network(self, network_parameters):
         network = convert_to_wpas_network(network_parameters)
+        ssid = network_parameters['ssid']
+        psk = network_parameters['password']
+        network.update({'ssid':ssid, 'psk':psk})
         try:
             self.config_updater.add_network(network)
         except AttributeError:
